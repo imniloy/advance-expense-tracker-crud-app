@@ -1,0 +1,40 @@
+{
+  "transactions": [
+    {
+      "name": "a",
+      "type": "income",
+      "amount": 1,
+      "id": 1
+    },
+    {
+      "name": "b",
+      "type": "income",
+      "amount": 1,
+      "id": 2
+    },
+    {
+      "name": "c",
+      "type": "expense",
+      "amount": 1,
+      "id": 3
+    },
+    {
+      "name": "d",
+      "type": "income",
+      "amount": 1,
+      "id": 4
+    },
+    {
+      "name": "e",
+      "type": "expense",
+      "amount": 1,
+      "id": 5
+    },
+    {
+      "name": "f",
+      "type": "income",
+      "amount": 1,
+      "id": 6
+    }
+  ]
+}
