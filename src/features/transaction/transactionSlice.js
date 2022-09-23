@@ -13,13 +13,14 @@ const initialState = {
     isError: false,
     error: "",
     editing: {},
+    totalTransactions: 1,
 };
 
 // async thunks
 export const fetchTransactions = createAsyncThunk(
     "transaction/fetchTransactions",
-    async () => {
-        const transactions = await getTransactions();
+    async ({ currentPage, limit, searchTransition }) => {
+        const transactions = await getTransactions(currentPage, limit, searchTransition);
         return transactions;
     }
 );
@@ -67,10 +68,12 @@ const transactionSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(fetchTransactions.fulfilled, (state, action) => {
+                // console.log(action.payload?.totalTransactions)
                 state.isError = false;
                 state.isLoading = false;
-                state.transactions = action?.payload;
-                state.latestTransactions = action?.payload?.filter((_, index) => index <= 4)
+                state.transactions = action.payload?.responseData;
+                state.latestTransactions = action.payload?.responseData.filter((_, index) => index <= 4)
+                state.totalTransactions = action.payload?.totalTransactions;
             })
             .addCase(fetchTransactions.rejected, (state, action) => {
                 state.isLoading = false;

@@ -1,9 +1,30 @@
 import axios from "../../utils/axios";
 
-export const getTransactions = async () => {
-    const response = await axios.get("/transactions?_sort=id&_order=desc");
+export const getTransactions = async (currentPage, limit, searchTransition) => {
+    console.log(currentPage, limit, searchTransition);
+    // console.log( currentPage, limit, searchTransition );
 
-    return response?.data;
+    let queryString = '';
+    if (currentPage) queryString += `_page=${currentPage}&_limit=${limit}`;
+
+    if (searchTransition !== '' && queryString.length > 0) {
+        queryString += `&q=${searchTransition}&_limit=${limit}`
+    }
+
+    if (queryString.length > 0) {
+        const response = await axios.get(`/transactions?_sort=id&_order=desc&${queryString}`);
+        return {
+            responseData: response?.data,
+            totalTransactions: response?.headers['x-total-count'],
+        };
+    } else {
+        const response = await axios.get(`/transactions?_sort=id&_order=desc`);
+        return {
+            responseData: response?.data,
+            totalTransactions: response?.headers["x-total-count"],
+        };
+    }
+
 };
 
 export const addTransaction = async (data) => {

@@ -118,6 +118,28 @@ ul {
   width: 400px;
 }
 
+.pagination-container {
+  display: flex;
+  min-width: 100%;
+  justify-content: center;
+  margin: 20px 0px;
+}
+.pagination-container .pagination {
+  cursor: pointer;
+  padding: 4px 12px;
+  font-size: 18px;
+  margin: 6px;
+  background-color: deeppink;
+  color: white;
+}
+.pagination-container .pagination:hover {
+  scale: 1.20;
+}
+
+.pagination-hover {
+  scale: 1.20;
+}
+
 label {
   display: block;
   align-self: center;
@@ -248,6 +270,7 @@ label {
   .conatiner_of_list_of_transactions {
     width: 90vw;
   }
+
 
   ul {
     width: 90vw;

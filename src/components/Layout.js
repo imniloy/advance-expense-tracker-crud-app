@@ -1,8 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useMatch, useNavigate } from "react-router-dom";
 
 export default function Layout({ children }) {
     const navigate = useNavigate();
-    
+    const match = useMatch("/");
+
     return (
         <div className="App">
             <div className="header">
@@ -14,9 +15,17 @@ export default function Layout({ children }) {
             </div>
 
             <div className="footer">
-                <span className="btn" onClick={() => navigate(-1)}>
-                    Go back
-                </span>
+                {
+                    match
+                        ?
+                        <span className="">
+                            Track your Expense
+                        </span>
+                        :
+                        <span className="btn" onClick={() => navigate(-1)}>
+                            Go back
+                        </span>
+                }
             </div>
         </div>
     );
