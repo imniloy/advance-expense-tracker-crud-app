@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import {
-    ArrowSmallRightIcon,
-    ArrowSmallLeftIcon,
-} from "@heroicons/react/24/outline";
-
-// import { setCurrentPage, searched, setTotalTransitions, filterByIncome, filterByExpense } from "../../features/filter/filterSlice";
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setCurrentPage } from '../../../features/filter/filterSlice';
 
 const Pagination = () => {
-    const { transactions } = useSelector((state) => state?.transaction);
     const { pagination: { limit, currentPage, totalTransition } } = useSelector((state) => state?.filter);
     const dispatch = useDispatch();
     const [currentPageNumber, setCurrentPageNumber] = useState(currentPage);
@@ -21,7 +14,7 @@ const Pagination = () => {
         setCurrentPageNumber(e.target.value);
     }
 
-    const pages = [...Array(totalPages)].map((_, index) =>
+    const pages = [...Array(totalPages)]?.map((_, index) =>
         <li key={index + 1} value={index + 1}
             onClick={handlePagination}
             className={currentPage === index + 1 ?

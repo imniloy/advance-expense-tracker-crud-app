@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useMatch } from "react-router-dom";
 import { fetchTransactions } from "../../features/transaction/transactionSlice";
-import { setTotalTransitions } from "../../features/filter/filterSlice";
+import { clearFilter, setTotalTransitions } from "../../features/filter/filterSlice";
 import Transaction from "./Transaction";
 import Pagination from './../ui/pagination/Pagination';
 
@@ -11,19 +11,19 @@ export default function Transactions() {
         (state) => state?.transaction
     );
 
-    const { searchTransition, pagination: { limit, currentPage } } = useSelector(
+    const { searchTransition, transitionType, pagination: { limit, currentPage } } = useSelector(
         (state) => state?.filter
     );
 
     const dispatch = useDispatch();
     const match = useMatch("/");
 
-    // console.log(currentPage);
-    // console.log(searchTransition);
-    // console.log(limit);
+    const resetFilter = () => {
+        dispatch(clearFilter())
+    };
 
     useEffect(() => {
-        dispatch(fetchTransactions({ currentPage, limit, searchTransition }))
+        dispatch(fetchTransactions({ currentPage, limit, searchTransition, transitionType }))
             .unwrap()
             .then((result) => {
                 dispatch(setTotalTransitions(result?.totalTransactions));
@@ -32,10 +32,13 @@ export default function Transactions() {
                 console.log(err);
             });
 
-    }, [dispatch, match, currentPage, limit, searchTransition]);
+        match && resetFilter();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dispatch, match, currentPage, limit, searchTransition, transitionType]);
 
     // decide what to render
-    let content = null;
+    let content;
     const transactionsToRender = match ? latestTransactions : transactions;
 
     if (isLoading) content = <p className="second_heading">Loading...</p>;

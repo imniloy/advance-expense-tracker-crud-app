@@ -1,14 +1,18 @@
 import axios from "../../utils/axios";
 
-export const getTransactions = async (currentPage, limit, searchTransition) => {
-    console.log(currentPage, limit, searchTransition);
-    // console.log( currentPage, limit, searchTransition );
+export const getTransactions = async (currentPage, limit, searchTransition, transitionType) => {
 
     let queryString = '';
     if (currentPage) queryString += `_page=${currentPage}&_limit=${limit}`;
 
     if (searchTransition !== '' && queryString.length > 0) {
-        queryString += `&q=${searchTransition}&_limit=${limit}`
+        queryString += `&name_like=${searchTransition}`
+    } else if (searchTransition !== '' && queryString.length === 0) {
+        queryString += `&name_like=${searchTransition}&_limit=${limit}`
+    }
+
+    if (transitionType) {
+        queryString += `&type=${transitionType}`;
     }
 
     if (queryString.length > 0) {

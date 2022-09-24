@@ -1,35 +1,25 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getBalance } from "../features/totalBalance/getTotalBalanceSlice";
 import numberWithCommas from "../utils/numberWithCommas";
 
 export default function Balance() {
-    const { transactions } = useSelector((state) => state.transaction);
+    const { totalBalance } = useSelector((state) => state?.balance);
+    const { transactions } = useSelector((state) => state?.transaction);
+    const dispatch = useDispatch();
 
-    const calculateIncome = (transactions) => {
-        let income = 0;
-        transactions.forEach((transaction) => {
-            const { type, amount } = transaction;
-            if (type === "income") {
-                income += amount;
-            } else {
-                income -= amount;
-            }
-        });
-
-        return income;
-    };
+    useEffect(() => {
+        dispatch(getBalance());
+    }, [dispatch, transactions])
 
     return (
         <div className="top_card">
             <p>Your Current Balance</p>
             <h3>
                 <span>৳</span>{" "}
-                {transactions?.length > 0 ? (
-                    <span>
-                        {numberWithCommas(calculateIncome(transactions))}
-                    </span>
-                ) : (
-                    0
-                )}
+                <span>
+                    {numberWithCommas(totalBalance)}
+                </span>
             </h3>
         </div>
     );

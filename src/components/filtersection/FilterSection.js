@@ -1,9 +1,23 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { filterByTransitionsType, filterByQuery } from '../../features/filter/filterSlice';
 
 const FilterSection = () => {
-    const [searchInput, setSearchInput] = useState("");
-    const [type, setType] = useState("");
+    const { searchTransition, transitionType } = useSelector(state => state?.filter)
+    const dispatch = useDispatch();
+    const [searchInput, setSearchInput] = useState(searchTransition);
+    const [type, setType] = useState(transitionType);
+
+    const filterTransitionByType = (value) => {
+        dispatch(filterByTransitionsType(value));
+    };
+
+    useEffect(() => {
+        dispatch(filterByQuery(searchInput));
+    }, [dispatch, searchInput])
+
     return (
         <div className='filter-container'>
             <input
@@ -16,7 +30,7 @@ const FilterSection = () => {
             />
 
             <div className="radio-filter">
-                <label className="radio_group">
+                <label className="radio_group" onClick={() => filterTransitionByType('income')}>
                     <input
                         required
                         type="radio"
@@ -28,7 +42,7 @@ const FilterSection = () => {
                     <span className="">Income</span>
                 </label>
 
-                <label className="radio_group">
+                <label className="radio_group" onClick={() => filterTransitionByType('expense')}>
                     <input
                         type="radio"
                         value="expense"

@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     searchTransition: "",
+    transitionType: "",
     pagination: {
         limit: 10,
         currentPage: 1,
@@ -19,14 +20,20 @@ const filterSlice = createSlice({
         setTotalTransitions(state, action) {
             state.pagination.totalTransition = action.payload;
         },
-        filterByIncome(state, action) {
+        filterByTransitionsType(state, action) {
+            state.transitionType = action.payload;
         },
-        filterByExpense(state, action) {
+        filterByQuery(state, action) {
+            state.searchTransition = action.payload;
+            state.pagination.currentPage = 1;
         },
-        searched(state, action) {
+        clearFilter(state, action) {
+            state.searchTransition = '';
+            state.transitionType = '';
+            state.pagination.currentPage = 1;
         },
     },
 })
 
-export const { setCurrentPage, setTotalTransitions, filterByIncome, filterByExpense } = filterSlice.actions;
+export const { setCurrentPage, setTotalTransitions, filterByTransitionsType, filterByQuery, clearFilter } = filterSlice.actions;
 export default filterSlice.reducer;

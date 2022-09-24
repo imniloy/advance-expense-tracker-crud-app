@@ -43,15 +43,15 @@
       "id": 7
     },
     {
-      "name": "h",
-      "type": "income",
-      "amount": 1,
+      "name": "niloy",
+      "type": "expense",
+      "amount": 1000,
       "id": 8
     },
     {
-      "name": "i",
+      "name": "niloy",
       "type": "income",
-      "amount": 1,
+      "amount": 5000,
       "id": 9
     },
     {
@@ -125,6 +125,18 @@
       "type": "expense",
       "amount": 1,
       "id": 21
+    },
+    {
+      "name": "h",
+      "type": "income",
+      "amount": 1,
+      "id": 22
+    },
+    {
+      "name": "i",
+      "type": "income",
+      "amount": 1,
+      "id": 23
     }
   ]
 }

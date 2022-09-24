@@ -7,7 +7,7 @@ import {
 } from "../../features/transaction/transactionSlice";
 import numberWithCommas from "../../utils/numberWithCommas";
 
-export default function Transaction({ transaction }) {
+export default function Transaction({ transaction = {} }) {
     const { name, amount, type, id } = transaction;
     const dispatch = useDispatch();
 
