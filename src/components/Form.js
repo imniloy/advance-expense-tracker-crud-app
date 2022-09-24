@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useMatch } from "react-router-dom";
 import {
     changeTransaction,
     createTransaction,
@@ -12,7 +11,6 @@ export default function Form() {
     const [amount, setAmount] = useState("");
     const [editMode, setEditMode] = useState(false);
 
-    const match = useMatch('/');
     const dispatch = useDispatch();
     const { isLoading, isError, error } = useSelector((state) => state?.transaction);
     const { editing } = useSelector((state) => state?.transaction) || {};
@@ -74,7 +72,7 @@ export default function Form() {
         <div className="form">
             <h3>Add new transaction</h3>
 
-            <form onSubmit={editMode && match ? handleUpdate : handleCreate}>
+            <form onSubmit={editMode ? handleUpdate : handleCreate}>
                 <div className="form-group">
                     <label>Name</label>
                     <input

@@ -15,11 +15,13 @@
 
 .header,
 .footer {
-  padding: 20px;
+  padding: 12px;
   text-align: center;
   background-color: #4338ca;
   color: whitesmoke;
 }
+
+.prevBtn {}
 
 .logoName {
   text-decoration-line: none;
@@ -33,7 +35,7 @@
 .container {
   width: 90%;
   max-width: 1024px;
-  margin: 20px auto;
+  margin: 10px auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -106,7 +108,7 @@ input {
 
 .loadMore_btn {
   width: 400px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .btn:hover {
@@ -122,7 +124,7 @@ ul {
   display: flex;
   min-width: 100%;
   justify-content: center;
-  margin: 20px 0px;
+  margin-top: 12px;
 }
 .pagination-container .pagination {
   cursor: pointer;

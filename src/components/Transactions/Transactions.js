@@ -61,7 +61,8 @@ export default function Transactions() {
             </div>
 
             {
-                match && transactions.length > 5 ?
+                match && transactions.length > 5
+                    ?
                     (
                         <Link to="/transactions">
                             <button className="btn loadMore_btn">View All Transactions</button>

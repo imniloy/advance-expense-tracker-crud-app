@@ -16,7 +16,7 @@ const Home = () => {
     }, [match, dispatch])
 
     return (
-        <div>
+        <div className="homepage">
             <Balance />
             <Form />
             <Transactions />
