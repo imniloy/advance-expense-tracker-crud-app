@@ -1,6 +1,6 @@
 {
-    "name": "lws-json-server-expense-tracker",
-    "description": "Example in memory Expense Tracker api with json-server by Learn with Sumit",
+    "name": "niloy-json-server-expense-tracker",
+    "description": "Example in memory Expense Tracker api with json-server by Niloy",
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
@@ -10,5 +10,5 @@
         "json-server": "^0.17.0"
     },
     "keywords": [],
-    "author": "Sumit Saha, Learn with Sumit"
+    "author": "Niloy"
 }
