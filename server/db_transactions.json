@@ -62,8 +62,8 @@
     },
     {
       "name": "k",
+      "amount": 100,
       "type": "income",
-      "amount": 10,
       "id": 11
     }
   ]
