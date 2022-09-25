@@ -141,7 +141,7 @@ const UpdateTransaction = () => {
                     </div>
 
                     <button disabled={isLoading} className="btn" type="submit">
-                        {editMode ? "Update Transaction" : "Add Transaction"}
+                        Update Transaction
                     </button>
 
                     {
