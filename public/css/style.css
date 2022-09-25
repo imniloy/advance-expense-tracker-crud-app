@@ -21,7 +21,8 @@
   color: whitesmoke;
 }
 
-.prevBtn {}
+.prevBtn {
+}
 
 .logoName {
   text-decoration-line: none;
@@ -135,11 +136,11 @@ ul {
   color: white;
 }
 .pagination-container .pagination:hover {
-  scale: 1.20;
+  scale: 1.2;
 }
 
 .pagination-hover {
-  scale: 1.20;
+  scale: 1.2;
 }
 
 label {
@@ -273,7 +274,6 @@ label {
     width: 90vw;
   }
 
-
   ul {
     width: 90vw;
     max-height: 100px;
@@ -288,4 +288,11 @@ label {
   * {
     font-size: 95% !important;
   }
+  /* .modal {
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  } */
 }

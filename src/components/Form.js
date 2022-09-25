@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
     changeTransaction,
     createTransaction,
+    onFromEditInActive,
 } from "../features/transaction/transactionSlice";
 
 export default function Form() {
@@ -13,11 +14,11 @@ export default function Form() {
 
     const dispatch = useDispatch();
     const { isLoading, isError, error } = useSelector((state) => state?.transaction);
-    const { editing } = useSelector((state) => state?.transaction) || {};
+    const { editing: { onFromEditing } } = useSelector((state) => state?.transaction);
 
     // listen for edit mode active
     useEffect(() => {
-        const { id, name, amount, type } = editing || {};
+        const { id, name, amount, type } = onFromEditing || {};
         if (id) {
             setEditMode(true);
             setName(name);
@@ -27,7 +28,7 @@ export default function Form() {
             setEditMode(false);
             reset();
         }
-    }, [editing]);
+    }, [onFromEditing]);
 
     const reset = () => {
         setName("");
@@ -51,10 +52,10 @@ export default function Form() {
         e.preventDefault();
         dispatch(
             changeTransaction({
-                id: editing?.id,
+                id: onFromEditing?.id,
                 data: {
                     name: name,
-                    amount: amount,
+                    amount: Number(amount),
                     type: type,
                 },
             })
@@ -64,6 +65,7 @@ export default function Form() {
     };
 
     const cancelEditMode = () => {
+        dispatch(onFromEditInActive())
         reset();
         setEditMode(false);
     };

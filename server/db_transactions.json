@@ -110,8 +110,8 @@
     },
     {
       "name": "l",
+      "amount": 100,
       "type": "income",
-      "amount": 1,
       "id": 19
     },
     {
@@ -122,21 +122,9 @@
     },
     {
       "name": "o",
+      "amount": 100,
       "type": "expense",
-      "amount": 1,
       "id": 21
-    },
-    {
-      "name": "h",
-      "type": "income",
-      "amount": 1,
-      "id": 22
-    },
-    {
-      "name": "i",
-      "type": "income",
-      "amount": 1,
-      "id": 23
     }
   ]
 }

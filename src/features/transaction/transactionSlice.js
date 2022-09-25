@@ -12,7 +12,10 @@ const initialState = {
     isLoading: false,
     isError: false,
     error: "",
-    editing: {},
+    editing: {
+        onFromEditing: {},
+        onMadalEditing: {},
+    },
     totalTransactions: 1,
 };
 
@@ -54,11 +57,18 @@ const transactionSlice = createSlice({
     name: "transaction",
     initialState,
     reducers: {
-        editActive: (state, action) => {
-            state.editing = action.payload;
+        onFromEditActive: (state, action) => {
+            state.editing.onFromEditing = action.payload;
         },
-        editInActive: (state) => {
-            state.editing = {};
+        onFromEditInActive: (state) => {
+            state.editing.onFromEditing = {};
+        },
+        onMadalEditActive: (state, action) => {
+            state.editing.onMadalEditing = action.payload;
+            // console.log(action);
+        },
+        onMadalEditInActive: (state) => {
+            state.editing.onMadalEditing = {};
         },
     },
     extraReducers: (builder) => {
@@ -140,4 +150,4 @@ const transactionSlice = createSlice({
 });
 
 export default transactionSlice.reducer;
-export const { editActive, editInActive } = transactionSlice.actions;
+export const { onFromEditActive, onFromEditInActive, onMadalEditActive, onMadalEditInActive } = transactionSlice.actions;
